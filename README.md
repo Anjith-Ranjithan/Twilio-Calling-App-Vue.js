@@ -1,4 +1,4 @@
-# vue-twilio-call
+You need to create a .env file with credentials of Twilio
 
 ## Project setup
 ```
