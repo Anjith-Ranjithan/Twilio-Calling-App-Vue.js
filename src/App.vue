@@ -6,89 +6,66 @@
                    v-model="phoneNumber"
                    placeholder="Enter phone number"
                    class="phone-input" />
-            <button @click="dialCall">Dial Call</button>
-            <button @click="receiveCall">Receive Call</button>
 
-            <!-- Mute/Unmute Button -->
-            <button @click="toggleMute">{{ isMuted ? 'Unmute' : 'Mute' }}</button>
+            <!-- DialCall Component -->
+            <DialCall :phoneNumber="phoneNumber" @callStatusUpdated="updateCallStatus" />
 
-            <!-- Pause/Continue Button -->
-            <button @click="togglePause">{{ isPaused ? 'Continue' : 'Pause' }}</button>
+            <button @click="cancelCall" v-if="callStatus !== 'Idle'">Cancel</button>
+
+            <!-- Receive Call Button Component -->
+            <ReceiveCall @callStatusUpdated="updateCallStatus" />
+            <MuteButton @callStatusUpdated="updateCallStatus" />
+            <PauseButton @callStatusUpdated="updateCallStatus" />
+
+            <!-- Call Status Display -->
+            <CallStatus :status="callStatus" />
         </div>
-
-        <div v-if="callStatus">Status: {{ callStatus }}</div>
     </div>
 </template>
 
 <script>
-    import axios from 'axios';
+    import io from 'socket.io-client'; // Import socket.io client
+    import MuteButton from './components/MuteButton.vue';
+    import CallStatus from './components/CallStatus.vue';
+    import PauseButton from './components/PauseButton.vue';
+    import DialCall from './components/DialCall.vue';
+    import ReceiveCall from './components/ReceiveCall.vue';
 
     export default {
         name: 'App',
+        components: {
+            DialCall,
+            ReceiveCall,
+            CallStatus,
+            MuteButton,
+            PauseButton
+        },
         data() {
             return {
-                phoneNumber: '',  // To hold the entered phone number
-                callStatus: null,
-                currentCallSid: null,
-                isMuted: false,   // Tracks whether the call is muted
-                isPaused: false,  // Tracks whether the call is paused
+                phoneNumber: '',
+                callStatus: 'Idle', // Default status
+                socket: null, // WebSocket client
             };
         },
         methods: {
-            async dialCall() {
-                if (this.phoneNumber) {
-                    try {
-                        const response = await axios.post('https://8199-111-92-86-174.ngrok-free.app/make-call', {
-                            to: this.phoneNumber,
-                        });
-                        this.callStatus = `Call initiated to ${this.phoneNumber}`;
-                        this.currentCallSid = response.data.callSid;
-                    } catch (error) {
-                        this.callStatus = `Error: ${error.message}`;
-                    }
-                } else {
-                    this.callStatus = 'Please enter a phone number.';
-                }
+            updateCallStatus(status) {
+                this.callStatus = status;
             },
-            receiveCall() {
-                this.callStatus = 'Receiving call (simulated)...';
-                // You can integrate receiving calls here as well (requires Twilio configuration)
-            },
-
-            // Toggle Mute/Unmute functionality
-            toggleMute() {
-                this.isMuted = !this.isMuted;
-                this.callStatus = this.isMuted ? 'Muted' : 'Unmuted';
-                // You would integrate Twilio's mute API here to mute/unmute the call.
-                console.log(this.isMuted ? 'Muting the call' : 'Unmuting the call');
-            },
-
-            // Toggle Pause/Continue functionality
-            togglePause() {
-                this.isPaused = !this.isPaused;
-                this.callStatus = this.isPaused ? 'Call paused' : 'Call continued';
-                // You would integrate Twilio's pause/continue API here to pause/resume the call.
-                console.log(this.isPaused ? 'Pausing the call' : 'Resuming the call');
-            },
+            cancelCall() {
+                // Reset everything to its initial state
+                this.phoneNumber = '';
+                this.callStatus = 'Idle';
+                this.socket.emit('cancelCall');  // Emit an event to handle cancellation at the server-side (if needed)
+            }
         },
+        mounted() {
+            // Initialize WebSocket connection
+            this.socket = io('https://2899-111-92-86-174.ngrok-free.app'); // Your server's URL here
+
+            // Listen for 'incomingCall' event from backend
+            this.socket.on('incomingCall', (data) => {
+                this.updateCallStatus(data.status);
+            });
+        }
     };
 </script>
-
-<style scoped>
-    .toolbar {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-    }
-
-    .phone-input {
-        padding: 10px;
-        font-size: 16px;
-        width: 200px;
-    }
-
-    button {
-        padding: 10px;
-        font-size: 16px;
-    }
-</style>
