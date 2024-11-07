@@ -92,9 +92,3 @@
         font-size: 16px;
     }
 </style>
-
-
-
-
-Mute/Unmute API: You'll need to implement the call muting/unmuting logic on the server side using Twilio's client.calls.update method.
-Pause/Continue API: You might need to pause the call on the server by using the Twilio API or using custom logic to handle it.
