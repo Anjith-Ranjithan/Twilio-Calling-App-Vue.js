@@ -19,32 +19,32 @@ html, body {
 .col-md-6 {
     flex: 1 1 50%; /* Ensure the columns split evenly */
     display: flex;
-    flex-direction: column;      /* Arrange children vertically */
-    justify-content: center;     /* Center items vertically */
-    align-items: center;         /* Center items horizontally */
-    text-align: center; 
-    
+    flex-direction: column; /* Arrange children vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center;
 }
 
 /* Main Content Area Styling */
 .primaryclass {
     display: flex;
-    flex-direction: column;      /* Arrange children vertically */
-    justify-content: center;     /* Center items vertically */
-    align-items: center;         /* Center items horizontally */
-    text-align: center;          /* Center text inside inputs and buttons */
+    flex-direction: column; /* Arrange children vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center text inside inputs and buttons */
     padding: 20px;
-    min-height: 70vh;            /* Ensure minimum height of the div */
+    min-height: 70vh; /* Ensure minimum height of the div */
     background-color: rgba(255, 255, 255, 0.05); /* Optional: background color */
     border-radius: 25px;
     min-width: 310px !important;
     color: white;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.7);
+}
 
+h3 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-h3{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
+
 h1 {
     color: rgb(255, 255, 255,0.5) !important;
     text-align: center;
@@ -70,19 +70,21 @@ button {
     max-height: fit-content;
 }
 
-button i {
-    margin-right: 8px; /* Adjust icon spacing */
-}
+    button i {
+        margin-right: 8px; /* Adjust icon spacing */
+    }
 
 /* Modal Content Styling */
 .modal-content {
     max-height: 90vh;
     overflow-y: auto;
 }
-nav{
+
+nav {
     background-color: rgba(0, 0, 0, 0.2);
 }
-.nav-link,.navbar-brand{
+
+.nav-link, .navbar-brand {
     color: white !important;
 }
 
@@ -91,33 +93,32 @@ nav{
 footer {
     background-color: rgba(0, 0, 0, 0.2) !important;
     padding: 10px 0; /* Reduced padding */
-    position:relative;
+    position: relative;
     width: 100%;
     bottom: 0;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.7);
-
 }
 
-footer .list-inline-item {
-    margin-right: 10px; /* Adjust icon spacing */
-}
+    footer .list-inline-item {
+        margin-right: 10px; /* Adjust icon spacing */
+    }
 
-footer .footer-text {
-    font-size: 0.85rem; /* Decrease font size of the copyright text */
-}
+    footer .footer-text {
+        font-size: 0.85rem; /* Decrease font size of the copyright text */
+    }
 
-footer .list-inline {
-    margin-top: 5px; /* Reduced space above the list */
-}
+    footer .list-inline {
+        margin-top: 5px; /* Reduced space above the list */
+    }
 
-footer .btn-outline-light {
-    font-size: 0.85rem; /* Smaller font size for buttons */
-    padding: 5px 10px; /* Smaller padding for buttons */
-}
+    footer .btn-outline-light {
+        font-size: 0.85rem; /* Smaller font size for buttons */
+        padding: 5px 10px; /* Smaller padding for buttons */
+    }
 
-footer .btn-outline-light i {
-    margin-right: 5px; /* Adjust the spacing between icons and text */
-}
+        footer .btn-outline-light i {
+            margin-right: 5px; /* Adjust the spacing between icons and text */
+        }
 
 /* Media Queries for Responsive Design */
 @media (max-width: 576px) {
