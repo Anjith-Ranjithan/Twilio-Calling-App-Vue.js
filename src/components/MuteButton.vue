@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="toggleMute">{{ isMuted ? 'Unmute' : 'Mute' }}</button>
+      <button @click="toggleMute" style="flex-grow: 1; width: 120px; margin-bottom: 10px;" class="btn btn-light">{{ isMuted ? 'Unmute' : 'Mute' }}</button>
     </div>
 </template>
 

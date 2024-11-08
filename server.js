@@ -38,7 +38,9 @@ app.post('/make-call', (req, res) => {
         .create({
             to: to,
             from: process.env.TWILIO_PHONE_NUMBER, // Your Twilio number
-            url: 'https://2899-111-92-86-174.ngrok-free.app/twiml', // TwiML URL for the call flow
+            url: 'https://2899-111-92-86-174.ngrok-free.app/twiml',
+            statusCallback: 'https://2899-111-92-86-174.ngrok-free.app/call-status', // URL for the status updates
+            statusCallbackMethod: 'POST', // TwiML URL for the call flow
         })
         .then(call => {
             res.status(200).json({ message: 'Call initiated', callSid: call.sid });

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="togglePause">{{ isPaused ? 'Continue' : 'Pause' }}</button>
+      <button @click="togglePause" style="flex-grow: 1; width: 120px; margin-bottom: 10px;" class="btn btn-light">{{ isPaused ? 'Continue' : 'Pause' }}</button>
     </div>
 </template>
 
