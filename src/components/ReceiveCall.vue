@@ -16,7 +16,7 @@
             async receiveCall() {
                 // Send a POST request to the /incoming-call-status endpoint
                 try {
-                    await axios.post('https://adaf-111-92-86-174.ngrok-free.app/incoming-call-status', {
+                    await axios.post('https://twiliocallapp2-dot-project-2024-440809.el.r.appspot.com/incoming-call-status', {
                         CallStatus: 'ringing',  // Hardcoding the CallStatus as 'ringing'
                     });
                     //const CallStatus ='ringing';

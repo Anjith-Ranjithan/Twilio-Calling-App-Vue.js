@@ -103,7 +103,7 @@
             onMounted(() => {
                 console.log('onMounted function triggered!!!!');
 
-                socket.value = io('https://adaf-111-92-86-174.ngrok-free.app', {
+                socket.value = io('https://twiliocallapp2-dot-project-2024-440809.el.r.appspot.com', {
                     transports: ['websocket'],
                 });
 

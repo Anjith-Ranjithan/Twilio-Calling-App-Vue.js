@@ -17,7 +17,7 @@
             async dialCall() {
                 if (this.phoneNumber) {
                     try {
-                        await axios.post('https://adaf-111-92-86-174.ngrok-free.app/make-call', {
+                        await axios.post('https://twiliocallapp2-dot-project-2024-440809.el.r.appspot.com/make-call', {
                             to: this.phoneNumber,
                         });
 

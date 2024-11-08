@@ -37,8 +37,8 @@ app.post('/make-call', (req, res) => {
         .create({
             to: to,
             from: process.env.TWILIO_PHONE_NUMBER,
-            url: 'https://adaf-111-92-86-174.ngrok-free.app/twiml',
-            statusCallback: 'https://adaf-111-92-86-174.ngrok-free.app/call-status',
+            url: 'https://twiliocallapp2-dot-project-2024-440809.el.r.appspot.com/twiml',
+            statusCallback: 'https://twiliocallapp2-dot-project-2024-440809.el.r.appspot.com/call-status',
             statusCallbackMethod: 'POST',
         })
         .then(call => {
@@ -58,7 +58,7 @@ app.post('/twiml', (req, res) => {
 });
 
 
-io.on('connection', (socket) => {
+io.on('connection', () => {
     console.log('A user connected');
 
     // Simulate an incoming call event after a delay (for testing)
