@@ -1,0 +1,35 @@
+service: vue-twilio-app  # Name of the new service
+runtime: custom          # Custom runtime to use a Dockerfile
+env: flex                # Use flexible environment for WebSocket support
+
+instance_class: F2       # Adjust based on your resource needs
+
+handlers:
+  # Serve static assets like favicon, fonts, and images from the dist/ directory
+  - url: /static/css
+    static_dir: dist/css  # Serve static CSS files from dist/css
+
+  - url: /static/js
+    static_dir: dist/js   # Serve static JS files from dist/js
+
+  - url: /static/img
+    static_dir: dist/img  # Serve static images from dist/img
+
+  - url: /static/fonts
+    static_dir: dist/fonts  # Serve fonts from dist/fonts
+
+  # Serve the favicon file directly
+  - url: /favicon.ico
+    static_files: dist/favicon.ico
+    upload: dist/favicon.ico
+
+  # Serve the index.html file at the root
+  - url: /
+    static_files: dist/index.html  # Serve the main HTML file
+    upload: dist/index.html
+
+  # Catch-all route for Vue Router in history mode (if applicable)
+  - url: /(.+)
+    static_files: dist/index.html
+    upload: dist/index.html
+
