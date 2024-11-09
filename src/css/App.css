@@ -7,42 +7,43 @@ html, body {
     overflow-x: hidden; /* Hide horizontal overflow */
     box-sizing: border-box; /* Include padding in width/height calculation */
 }
-
+/* Full-Height Row Setup */
 .row {
-    display: flex; 
-    flex-wrap: wrap;
-    margin: 0; 
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow columns to wrap to the next row if necessary */
+    margin: 0; /* Remove any default margin */
 }
 
+/* Column Styles */
 .col-md-6 {
-    flex: 1 1 50%;
+    flex: 1 1 50%; /* Ensure the columns split evenly */
     display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center;
+    flex-direction: column;      /* Arrange children vertically */
+    justify-content: center;     /* Center items vertically */
+    align-items: center;         /* Center items horizontally */
+    text-align: center; 
+    
 }
 
-
+/* Main Content Area Styling */
 .primaryclass {
     display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center;
-    text-align: center; 
+    flex-direction: column;      /* Arrange children vertically */
+    justify-content: center;     /* Center items vertically */
+    align-items: center;         /* Center items horizontally */
+    text-align: center;          /* Center text inside inputs and buttons */
     padding: 20px;
-    min-height: 70vh; 
-    background-color: rgba(255, 255, 255, 0.05); 
+    min-height: 70vh;            /* Ensure minimum height of the div */
+    background-color: rgba(255, 255, 255, 0.05); /* Optional: background color */
     border-radius: 25px;
     min-width: 310px !important;
     color: white;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.7);
-}
 
-h3 {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-
+h3{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 h1 {
     color: rgb(255, 255, 255,0.5) !important;
     text-align: center;
@@ -52,36 +53,35 @@ h1 {
     background-color: rgba(255, 255, 255, 0.15);
 }
 
+/* Input Styling */
 .phone-input {
-    margin: 50px 0 20px;
-    width: 100%; 
-    max-width: 350px; 
+    margin: 50px 0 20px; /* Reduced margin */
+    width: 100%; /* Ensure input takes full width of its container */
+    max-width: 350px; /* Optional: Limit the width for larger screens */
 }
 
 /* Button Styling */
 button {
-    width: 100%; 
-    max-width: 150px; 
+    width: 100%; /* Full-width buttons on smaller screens */
+    max-width: 150px; /* Optional: Limit the max width for buttons */
     padding: 10px 15px;
     margin-bottom: 15px;
     max-height: fit-content;
 }
 
-    button i {
-        margin-right: 8px;
-    }
+button i {
+    margin-right: 8px; /* Adjust icon spacing */
+}
 
-
+/* Modal Content Styling */
 .modal-content {
     max-height: 90vh;
     overflow-y: auto;
 }
-
-nav {
+nav{
     background-color: rgba(0, 0, 0, 0.2);
 }
-
-.nav-link, .navbar-brand {
+.nav-link,.navbar-brand{
     color: white !important;
 }
 
@@ -89,57 +89,59 @@ nav {
 /* Styling for Footer */
 footer {
     background-color: rgba(0, 0, 0, 0.2) !important;
-    padding: 10px 0; 
-    position: relative;
+    padding: 10px 0; /* Reduced padding */
+    position:relative;
     width: 100%;
     bottom: 0;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.7);
+
 }
 
-    footer .list-inline-item {
-        margin-right: 10px; 
-    }
+footer .list-inline-item {
+    margin-right: 10px; /* Adjust icon spacing */
+}
 
-    footer .footer-text {
-        font-size: 0.85rem;
-    }
+footer .footer-text {
+    font-size: 0.85rem; /* Decrease font size of the copyright text */
+}
 
-    footer .list-inline {
-        margin-top: 5px; 
-    }
+footer .list-inline {
+    margin-top: 5px; /* Reduced space above the list */
+}
 
-    footer .btn-outline-light {
-        font-size: 0.85rem;
-        padding: 5px 10px; 
-    }
+footer .btn-outline-light {
+    font-size: 0.85rem; /* Smaller font size for buttons */
+    padding: 5px 10px; /* Smaller padding for buttons */
+}
 
-        footer .btn-outline-light i {
-            margin-right: 5px; 
-        }
+footer .btn-outline-light i {
+    margin-right: 5px; /* Adjust the spacing between icons and text */
+}
 
-
+/* Media Queries for Responsive Design */
 @media (max-width: 576px) {
     .container {
         padding-left: 15px;
         padding-right: 15px;
     }
 
-    
+    /* Full-width buttons on small screens */
     .btn-success, .btn-danger {
         max-width: 100%;
     }
 
     .phone-input {
-        margin: 15px 0;
+        margin: 15px 0; /* Adjust input margin for smaller screens */
     }
 
+    /* Buttons now stack on small screens */
     button {
-        width: 100%; 
-        max-width: 100%;
+        width: 100%; /* Buttons take full width */
+        max-width: 100%; /* Full-width for buttons */
     }
 
     /* Text Styling */
     .footer-text {
-        font-size: 0.75rem; 
+        font-size: 0.75rem; /* Slightly smaller text on mobile */
     }
 }

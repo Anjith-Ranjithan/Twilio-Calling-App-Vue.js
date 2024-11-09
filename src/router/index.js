@@ -6,20 +6,20 @@ import CallingPage from '../components/CallingPage.vue';
 Vue.use(Router);
 
 const routes = [
-    {
-        path: '/',
-        name: 'Home',
-        component: App,
-    },
-    {
-        path: '/calling',
-        name: 'CallingPage',
-        component: CallingPage,
-    },
+  {
+    path: '/',
+    name: 'Home',
+    component: App,
+  },
+  {
+    path: '/calling',
+    name: 'CallingPage',
+    component: CallingPage,
+  },
 ];
 
 const router = new Router({
-    routes,
+  routes,
 });
 
 export default router;
