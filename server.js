@@ -3,23 +3,17 @@ const express = require('express');
 const twilio = require('twilio');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const fs = require('fs');
 const app = express();
-const https = require('https'); 
-const options = {
-  key: fs.readFileSync('./certificates/private.key'),
-  cert: fs.readFileSync('./certificates/certificate.crt'),
-};
-const server = https.createServer(options,app);
+/*
+const http = require('http'); 
+const server = http.createServer(app);
 const socketIo = require('socket.io');
 const io = socketIo(server, {
   transports: ['websocket', 'polling'],    // Fallback to polling if WebSocket is unavailable
 });
+*/
 const port = process.env.PORT || 3000;
-// Serve static files or routes here if needed
-app.get('/', (req, res) => {
-  res.send('Hello, this is a secure WebSocket server!');
-});
+
 const client = twilio(process.env.TWILIO_API_KEY, process.env.TWILIO_API_SECRET, {
   accountSid: process.env.TWILIO_ACCOUNT_SID,
   authToken: process.env.TWILIO_AUTH_TOKEN,
@@ -47,15 +41,16 @@ app.post('/make-call', (req, res) => {
     .create({
       to: to,
       from: process.env.TWILIO_PHONE_NUMBER, 
-      url: 'https://vue-twilio-app-437177769978.us-central1.run.app/twiml',
-      statusCallback: 'https://vue-twilio-app-437177769978.us-central1.run.app/call-status', 
+      url: 'https://vue-twilio-app-dot-project-2024-440809.el.r.appspot.com/twiml',
+      statusCallback: 'https://vue-twilio-app-dot-project-2024-440809.el.r.appspot.com/call-status', 
       statusCallbackMethod: 'POST', 
     })
     .then(call => {
       res.status(200).json({ message: 'Call initiated', callSid: call.sid });
     })
     .catch(error => {
-      res.status(500).json({ error: error.message });
+      console.error('Twilio Error:', error);
+      res.status(500).json({ error: error.message, details: error });
     });
 });
 
@@ -68,15 +63,7 @@ app.post('/twiml', (req, res) => {
 });
 
 
-io.on('connection', (socket) => {
-  console.log('A user connected');
-  console.log(socket);
 
-  // Simulate an incoming call event after a delay (for testing)
-  /*setTimeout(() => {
-    socket.emit('incomingCall', { status: 'ringing' });
-  }, 2000);  // Emits after 2 seconds*/
-});
 
 
 

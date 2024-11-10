@@ -17,7 +17,7 @@
       <ModelPopup :isVisible="showCallingPage" @update:isVisible="showCallingPage = $event" />
       <div class="col-md-6 d-flex flex-column justify-content-between p-3">
         <div class="primaryclass">
-          <ReceiveCall/>
+          <ReceiveCall @callFunction ="openCallingPage"/>
           <MuteButton @callStatusUpdated="updateCallStatus" />
           <PauseButton @callStatusUpdated="updateCallStatus" />
         </div>
@@ -28,8 +28,7 @@
 </template>
 
 <script>
-import { onMounted, onBeforeUnmount, ref } from 'vue'; // Import relevant Vue 3 hooks
-import io from 'socket.io-client'; // Import socket.io client
+import { onMounted, ref } from 'vue'; 
 import MuteButton from './components/MuteButton.vue';
 import CallStatus from './components/CallStatus.vue';
 import PauseButton from './components/PauseButton.vue';
@@ -52,6 +51,7 @@ export default {
     MainNavbar,
     MainFooter,
     ModelPopup,
+    
   },
   setup() {
     const phoneNumber = ref('');  
@@ -79,7 +79,7 @@ export default {
     const cancelCall = () => {
       phoneNumber.value = '';
       callStatus.value = '';
-      socket.value.emit('cancelCall'); // Emit an event to handle cancellation at the server-side (if needed)
+      //socket.value.emit('cancelCall'); // Emit an event to handle cancellation at the server-side (if needed)
     };
 
     // Method to open the calling page
@@ -103,36 +103,17 @@ export default {
     onMounted(() => {
       console.log('onMounted function triggered!!!!');
 
-      socket.value = io('wss://vue-twilio-app-437177769978.us-central1.run.app', {
-        transports: ['websocket', 'polling'], 
-      });
+
+ 
 
 
-  socket.value.on('connect', () => {
-    console.log('Connected to socket server');
-  });
 
-  socket.value.on('connect_error', (err) => {
-    console.error('Socket connection failed:', err);  // More detailed error
-  });
-
-      // Listen for 'incomingCall' event from the backend
-      socket.value.on('incomingCall', (data) => {
-        console.log('Received incoming call status:', data.status);
-        updateCallStatus(data.status);
-
-      });
 
       // Listen for cancel event via emitter
       emitter.on('cancelCall', cancelCall);
     });
 
-    // Clean up the socket connection when the component is unmounted
-    onBeforeUnmount(() => {
-      if (socket.value) {
-        socket.value.disconnect();
-      }
-    });
+
 
     return { phoneNumber, callStatus, showCallingPage, socket, backgroundStyle, updateCallStatus, cancelCall, openCallingPage, closeModal, callFunction };
   },

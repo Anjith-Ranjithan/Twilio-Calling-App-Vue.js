@@ -16,7 +16,7 @@ export default {
     async dialCall() {
       if (this.phoneNumber) {
         try {
-          await axios.post('https://vue-twilio-app-437177769978.us-central1.run.app/make-call', {
+          await axios.post('https://vue-twilio-app-dot-project-2024-440809.el.r.appspot.com/make-call', {
             to: this.phoneNumber,
           });
 

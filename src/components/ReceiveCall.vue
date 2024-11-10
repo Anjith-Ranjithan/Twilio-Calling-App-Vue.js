@@ -18,11 +18,11 @@ export default {
     async receiveCall() {
       // Send a POST request to the /incoming-call-status endpoint
       try {
-        await axios.post('https://vue-twilio-app-437177769978.us-central1.run.app/incoming-call-status', {
+        await axios.post('https://vue-twilio-app-dot-project-2024-440809.el.r.appspot.com/incoming-call-status', {
           CallStatus: 'ringing',  // Hardcoding the CallStatus as 'ringing'
         });
-        //const CallStatus ='ringing';
-        //this.$emit('callFunction',CallStatus); 
+        const CallStatus ='ringing';
+        this.$emit('callFunction',CallStatus); 
         // Emit an event to update the frontend with the status
         //this.$emit('callStatusUpdated', 'Receiving call...');
       } catch (error) {
